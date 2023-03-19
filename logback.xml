@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="ErrorFileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>error.log</file>
+        <encoder>
+            <pattern>%d{ISO8601} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="NoHupFileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>nohup.log</file>
+        <encoder>
+            <pattern>%d{ISO8601} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+    </appender>
+
+    <logger name="org.springframework" additivity="false" level="OFF">
+        <appender-ref ref="NoHupFileAppender"/>
+    </logger>
+
+    <logger name="org.apache" additivity="false" level="OFF">
+        <appender-ref ref="NoHupFileAppender"/>
+    </logger>
+
+    <logger name="za.co" additivity="false" level="INFO">
+        <appender-ref ref="ErrorFileAppender"/>
+        <appender-ref ref="NoHupFileAppender"/>
+    </logger>
+
+    <root level="WARN">
+        <appender-ref ref="ErrorFileAppender"/>
+        <appender-ref ref="NoHupFileAppender"/>
+    </root>
+
+</configuration>

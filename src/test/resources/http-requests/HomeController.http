@@ -1,0 +1,11 @@
+### /home
+GET http://{{host}}:{{port}}/home
+Accept: application/json
+
+### /health - healthy!
+GET http://{{host}}:{{port}}/health
+Accept: application/json
+
+### /health - error!
+GET http://{{host}}:{{port}}/health?error=1
+Accept: application/json

@@ -1,0 +1,32 @@
+### list all enabled actuator endpoints:
+GET http://{{host}}:{{port}}/actuator
+Accept: application/json
+
+### list entire environment
+GET http://{{host}}:{{port}}/actuator/env
+Accept: application/json
+
+### environment: logging.config
+GET http://{{host}}:{{port}}/actuator/env/logging.config
+Accept: application/json
+
+### List configprops
+http://{{host}}:{{port}}/actuator/configprops
+Accept: application/json
+
+### List loggers and their levels
+GET http://{{host}}:{{port}}/actuator/loggers
+Accept: application/json
+
+
+### List specific logging level
+GET http://{{host}}:{{port}}/actuator/loggers/za.co.vine.springbootlogbackdemo.controller.HomeController
+Accept: application/json
+
+### Set logging level
+POST http://{{host}}:{{port}}/actuator/loggers/za.co.vine.springbootlogbackdemo.controller.HomeController
+Content-Type: application/json
+
+{
+  "configuredLevel": "ERROR"
+}
